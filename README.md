@@ -10,18 +10,18 @@ It accompanies the paper:
 
 - **Post-hoc** – augments pre-trained network without architectural changes and retraining.
 - **Unified** – supports both regression and classification tasks in deep learning.  
-- **Efficient** – Produces aleatoric and epistemic uncertainty estimates in one forward pass.
-- **Calibration** – Provides mechanisms to calibrate aleatoric uncertainty and improve predictive reliability. 
+- **Efficient** – produces aleatoric and epistemic uncertainty estimates in one forward pass.
+- **Calibration** – provides mechanisms to calibrate aleatoric uncertainty and improve predictive reliability. 
 
 ## Repository Structure
 
 ```
-Cubic_Regression/ # Toy cubic regression for fast demonstration.
-MNIST_Classification/ # Binary digit classification for fast demonstration.
-UCI_Benchmarks/ # Standard UCI regression datasets for scalar regression evaluation.
-Monocular_Depth_Estimation/ # Monocular end-to-end image depth estimation for high-dimensional regression.
-Image_Classification/ # CIFAR-10/100, ImageNet-1K for large-scale image classification.
-Multimodal_Classification/ # LUMA multimodal benchmark (image/audio/text) for multimodal classification tasks.
+Cubic_Regression/             # Toy cubic regression for fast demonstration.
+MNIST_Classification/         # Digit classification for fast demonstration.
+UCI_Benchmarks/               # Standard UCI regression datasets for scalar regression evaluation.
+Monocular_Depth_Estimation/   # Monocular end-to-end image depth estimation for high-dimensional regression.
+Image_Classification/         # CIFAR-10/100, ImageNet-1K for large-scale image classification.
+Multimodal_Classification/    # LUMA multimodal benchmark (image/audio/text) for multimodal classification tasks.
 ```
 
 Each directory provides scripts to reproduce the corresponding experiments.
