@@ -1,4 +1,4 @@
-### Toy Example: SPC-UQ on Regression
+### Toy Example: SPC-UQ on Cubic Regression
 
 This is the toy example for SPC-UQ in the regression task.
 
@@ -14,4 +14,3 @@ The test set is similarly constructed, but with inputs sampled from a broader ra
 - In-distribution (iD): x ∈ [-4, 4]  
 - Out-of-distribution (OOD): x ∈ [-6, -4) ∪ (4, 6]
 
-This setup introduces asymmetric and heteroscedastic noise to better evaluate the model’s ability to capture both aleatoric and epistemic uncertainty.
