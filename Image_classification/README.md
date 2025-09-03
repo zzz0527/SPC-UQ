@@ -191,56 +191,6 @@ The following table presents results for a Wide-ResNet-28-10 architecture traine
 | DDU (ours)  | Softmax Entropy | GMM Density | 95.97+-0.03 | 0.85+-0.04 | 98.09+-0.10 |
 
 
-## Active Learning
-
-To run active learning experiments, use ```active_learning_script.py```. You can run active learning experiments on both [MNIST](http://yann.lecun.com/exdb/mnist/) as well as [Dirty-MNIST](https://blackhc.github.io/ddu_dirty_mnist/). When running with Dirty-MNIST, you will need to provide a pretrained model on Dirty-MNIST to distinguish between clean MNIST and Ambiguous-MNIST samples. The following are the main command line arguments for ```active_learning_script.py```.
-```
---seed: seed used for initializing the first model (later experimental runs will have seeds incremented by 1)
---model: model architecture to train (resnet18)
--ambiguous: whether to use ambiguous MNIST during training. If this is set to True, the models will be trained on Dirty-MNIST, otherwise they will train on MNIST.
---dataset-root: /path/to/amnist_labels.pt and amnist_samples.pt/
---trained-model: model architecture of pretrained model to distinguish clean and ambiguous MNIST samples
--tsn: if pretrained model has been trained using spectral normalization
---tcoeff: coefficient of spectral normalization used on pretrained model
--tmod: if pretrained model has been trained using architectural modifications (leaky ReLU and average pooling on skip connections)
---saved-model-path: /path/to/saved/pretrained/model/
---saved-model-name: name of the saved pretrained model file
---threshold: Threshold of softmax entropy to decide if a sample is ambiguous (samples having higher softmax entropy than threshold will be considered ambiguous)
---subsample: number of clean MNIST samples to use to subsample clean MNIST
--sn: whether to use spectral normalization during training
---coeff: coefficient of spectral normalization during training
--mod: whether to use architectural modifications (leaky ReLU and average pooling on skip connections) during training
---al-type: type of active learning acquisition model (softmax/ensemble/gmm)
--mi: whether to use mutual information for ensemble al-type
---num-initial-samples: number of initial samples in the training set
---max-training-samples: maximum number of training samples
---acquisition-batch-size: batch size for each acquisition step
-```
-
-As an example, to run the active learning experiment on MNIST using the DDU method, use:
-```
-python active_learning_script.py \
-       --seed 1 \
-       --model resnet18 \
-       -sn -mod \
-       --al-type gmm
-```
-Similarly, to run the active learning experiment on Dirty-MNIST using the DDU baseline, with a pretrained ResNet-18 with SN to distinguish clean and ambiguous MNIST samples, use the following:
-```
-python active_learning_script.py \
-       --seed 1 \
-       --model resnet18 \
-       -sn -mod \
-       -ambiguous \
-       --dataset-root /home/user/amnist/ \
-       --trained-model resnet18 \
-       -tsn \
-       --saved-model-path /path/to/pretrained/model \
-       --saved-model-name resnet18_sn_3.0_1_350.model \
-       --threshold 1.0 \
-       --subsample 1000 \
-       --al-type gmm
-```
 
 ### Results
 
