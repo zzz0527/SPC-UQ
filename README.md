@@ -4,7 +4,7 @@ This repository provides the official implementation and evaluation code for **S
 
 This work is associated with the paper:  
 **"Post-Hoc Split-Point Self-Consistency Verification for Efficient, Unified Quantification of Aleatoric and Epistemic Uncertainty in Deep Learning"**  
-(*To appear in IEEE TPAMI / Under Review*)
+
 ---
 
 ## 📌 Key Features
