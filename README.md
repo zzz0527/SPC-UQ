@@ -5,7 +5,6 @@ This repository provides the official implementation and evaluation code for **S
 This work is associated with the paper:  
 **"Post-Hoc Split-Point Self-Consistency Verification for Efficient, Unified Quantification of Aleatoric and Epistemic Uncertainty in Deep Learning"**  
 
----
 
 ## 📌 Key Features
 
@@ -14,7 +13,6 @@ This work is associated with the paper:
 - **Efficient**: Requires only a single forward pass for UQ inference.
 - **Decomposed Uncertainty**: Separates aleatoric and epistemic signals via self-consistency constraints.
 
----
 
 ## 📊 Benchmarks
 
