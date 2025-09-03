@@ -1,21 +1,7 @@
 # Deep Deterministic Uncertainty
 
-[![arXiv](https://img.shields.io/badge/stat.ML-arXiv%3A2006.08437-B31B1B.svg)](https://arxiv.org/abs/2102.11582)
-[![Pytorch 1.8.1](https://img.shields.io/badge/pytorch-1.8.1-blue.svg)](https://pytorch.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/omegafragger/DDU/blob/main/LICENSE)
-
 This repository contains the code for [*Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty*](https://arxiv.org/abs/2102.11582).
 
-If the code or the paper has been useful in your research, please add a citation to our work:
-
-```
-@article{mukhoti2021deterministic,
-  title={Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty},
-  author={Mukhoti, Jishnu and Kirsch, Andreas and van Amersfoort, Joost and Torr, Philip HS and Gal, Yarin},
-  journal={arXiv preprint arXiv:2102.11582},
-  year={2021}
-}
-```
 
 ## Dependencies
 
