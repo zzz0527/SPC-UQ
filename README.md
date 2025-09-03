@@ -1,7 +1,10 @@
 # SPC-UQ: A Post-hoc, Efficient, and Unified Uncertainty Quantification Framework
 
-This repository provides the implementation and evaluation of **SPC-UQ** (Split-Point Consistency for Uncertainty Quantification), a post-hoc, single-forward-pass UQ framework designed to quantify both aleatoric and epistemic uncertainty across diverse deep learning tasks.
+This repository provides the official implementation and evaluation code for **SPC-UQ** (Split-Point Consistency for Uncertainty Quantification), a post-hoc, single-forward-pass framework for jointly quantifying **aleatoric** and **epistemic** uncertainty across diverse deep learning tasks.
 
+This work is associated with the paper:  
+**"Post-Hoc Split-Point Self-Consistency Verification for Efficient, Unified Quantification of Aleatoric and Epistemic Uncertainty in Deep Learning"**  
+(*To appear in IEEE TPAMI / Under Review*)
 ---
 
 ## 📌 Key Features
