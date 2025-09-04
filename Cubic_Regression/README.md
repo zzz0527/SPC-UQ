@@ -28,3 +28,6 @@ python run_cubic_tests.py --num-epochs 5000 --data-noise log --UQ-model SPCregre
 - `--UQ-model {SPCregression, DeepEnsemble, EDLRegressor, EDLQuantileRegressor, QROC, ConformalRegressor}`: UQ model to run.
 
 After execution, the script prints RMSE, PICP and related metrics, and produces plots of prediction intervals and uncertainty.
+
+### Dependencies
+The benchmarks are lightweight and can run on **CPU-only devices** (GPU is optional for faster training).  
