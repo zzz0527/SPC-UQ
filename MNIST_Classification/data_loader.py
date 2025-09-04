@@ -1,30 +1,9 @@
 """
 IO module for train/test regression datasets
 """
-import numpy as np
 import os
-import torch
-from torch.utils.data import DataLoader, ConcatDataset
+import numpy as np
 from torchvision import datasets, transforms
-
-
-def generate_cubic(x, noise=False):
-    x = x.astype(np.float32)
-    y = x**3
-
-    if noise:
-        sigma = 3 * np.ones_like(x)
-    else:
-        sigma = np.zeros_like(x)
-    r = np.random.normal(0, sigma).astype(np.float32)
-    return y+r, sigma
-
-
-#####################################
-# individual data files             #
-#####################################
-vb_dir   = os.path.dirname(__file__)
-data_dir = os.path.join(vb_dir, "data/uci")
 
 def _load_mnist():
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.1307,), (0.3081,))])
@@ -37,8 +16,7 @@ def _load_mnist():
 
 def load_dataset(name):
     # load full dataset
-    load_funs = { "mnist"        : _load_mnist}
-
+    load_funs = { "mnist": _load_mnist}
     train_dataset, test_dataset, ood_dataset, input_shape, num_classes = load_funs[name]()
 
 
