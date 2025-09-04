@@ -44,31 +44,30 @@ conda activate spc_uq
 
 ## Usage
 
-Example entry points:
+Each subdirectory corresponds to a specific benchmark.  
+To run an experiment, navigate into the corresponding folder and follow the instructions provided in its `README.md`.  
 
-```
+### Quick Start
+For a fast verification, we provide two lightweight benchmark tasks:
+
+```bash
 # Synthetic cubic regression
 python Cubic_Regression/run_cubic_tests.py
-
-# UCI regression benchmarks
-python UCI_Benchmarks/run_uci_dataset_tests.py --dataset energy
 
 # MNIST classification
 python MNIST_Classification/run_cls_tests.py
 ```
 
-For CIFAR or Dirty-MNIST experiments, refer to `Image_classification/README.md`.  
-Depth estimation experiments can be started with `python Monocular_Depth_Estimation/train_depth.py`.  
-The multimodal LUMA utilities are in `Multimodal_classification/code/`.  
-See the documentation in each subdirectory for dataset preparation and additional options.
+See the documentation in each subdirectory for details on dataset preparation, configuration options, and advanced usage.
 
 ## Citation
 
 If you use SPC-UQ in your research, please cite our paper:
 
 ```
-@article{spc_uq_2024,
-  title={Post-Hoc Split-Point Self-Consistency Verification for Efficient, Unified Quantification of Aleatoric and Epistemic Uncertainty in Deep Learning},
-  year={2024}
+@article{zhao2025spc,
+  title   = {Post-Hoc Split-Point Self-Consistency Verification for Efficient, Unified Quantification of Aleatoric and Epistemic Uncertainty in Deep Learning},
+  author  = {Zhao, ZZ and Chen, Ke},
+  year    = {2025}
 }
 ```
