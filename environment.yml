@@ -1,4 +1,4 @@
-name: SPC-UQ
+name: spc_uq
 channels:
   - pytorch
   - nvidia
