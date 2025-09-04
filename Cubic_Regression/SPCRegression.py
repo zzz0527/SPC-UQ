@@ -141,7 +141,7 @@ class SPCregression:
                 if (epoch + 1) % 100 == 0:
                     print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}")
 
-    def predict(self, data, calibration=True):
+    def predict(self, data, calibration=False):
         """Run prediction and return interval bounds and uncertainty estimate."""
         self.model.eval()
         with torch.no_grad():

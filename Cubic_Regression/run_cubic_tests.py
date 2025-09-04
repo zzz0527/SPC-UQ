@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+import argparse
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 from SPCRegression import SPCregression
@@ -102,10 +103,17 @@ def generate_test_data(n_samples=100, noise='log'):
     return x, y
 
 
+# ===================== Argument Parser ===================== #
+parser = argparse.ArgumentParser()
+parser.add_argument("--num-epochs", default=5000, type=int)
+parser.add_argument('--data-noise', default='log', choices=['norm', 'tri', 'log'])
+parser.add_argument('--UQ-model', default='SPCregression', choices=['SPCregression', 'DeepEnsemble', 'EDLRegressor', 'EDLQuantileRegressor', 'QROC', 'ConformalRegressor'], help='Select UQ model to test.')
+args = parser.parse_args()
+
 # Generate training, calibration, and testing datasets
-x_train, y_train = generate_train_data(n_samples=2000, noise='norm')
-x_calib, y_calib = generate_train_data(n_samples=500)
-x_test, y_test = generate_test_data(n_samples=1000, noise='norm')
+x_train, y_train = generate_train_data(n_samples=2000, noise=args.data_noise)
+x_calib, y_calib = generate_train_data(n_samples=500, noise=args.data_noise)
+x_test, y_test = generate_test_data(n_samples=1000, noise=args.data_noise)
 
 # Convert data to torch tensors
 x_train_tensor = torch.from_numpy(x_train)
@@ -121,7 +129,7 @@ num_models = 5
 lr = 0.001
 
 # Select UQ model to test
-UQ = 'SPCregression'
+UQ = args.UQ_model
 
 if UQ == 'SPCregression':
     model = SPCregression(learning_rate=lr)
