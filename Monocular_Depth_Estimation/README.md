@@ -6,14 +6,6 @@ This directory demonstrates monocular depth estimation with uncertainty quantifi
 - **In-distribution** training and test sets are stored as HDF5 files `depth_train.h5` and `depth_test.h5` under `data/`.
 - **Out-of-distribution** evaluation uses `apolloscape_test.h5` placed in the same `data/` directory.
 
-## Requirements
-- Python 3.8+
-- PyTorch
-- NumPy
-- h5py
-- scikit-learn
-- Matplotlib
-
 ## Training
 Train a depth model by selecting a method and other hyperparameters:
 
