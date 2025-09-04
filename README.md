@@ -28,13 +28,19 @@ Each directory provides scripts to reproduce the corresponding experiments.
 
 ## Installation
 
-SPC-UQ requires Python 3 and [PyTorch](https://pytorch.org/). Install the core dependencies with:
+We recommend using [conda](https://docs.conda.io/en/latest/) to manage dependencies.  
+All required packages and versions are specified in `environment.yml`.
 
+### Step 1: Clone the repository
+```bash
+git clone https://github.com/zzz0527/SPC-UQ.git
+cd SPC-UQ
 ```
-pip install torch torchvision numpy matplotlib
+### Step 2: Create and activate the environment
+```bash
+conda env create -f environment.yml
+conda activate spc_uq
 ```
-
-Some tasks need additional packages such as `h5py` (depth estimation) or the dependencies listed in `Image_classification/environment.yml` and `Multimodal_classification/code/requirements.txt`.
 
 ## Usage
 
