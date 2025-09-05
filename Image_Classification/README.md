@@ -1,33 +1,3 @@
-# Deep Deterministic Uncertainty
-
-[![arXiv](https://img.shields.io/badge/stat.ML-arXiv%3A2006.08437-B31B1B.svg)](https://arxiv.org/abs/2102.11582)
-[![Pytorch 1.8.1](https://img.shields.io/badge/pytorch-1.8.1-blue.svg)](https://pytorch.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/omegafragger/DDU/blob/main/LICENSE)
-
-This repository contains the code for [*Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty*](https://arxiv.org/abs/2102.11582).
-
-If the code or the paper has been useful in your research, please add a citation to our work:
-
-```
-@article{mukhoti2021deterministic,
-  title={Deterministic Neural Networks with Appropriate Inductive Biases Capture Epistemic and Aleatoric Uncertainty},
-  author={Mukhoti, Jishnu and Kirsch, Andreas and van Amersfoort, Joost and Torr, Philip HS and Gal, Yarin},
-  journal={arXiv preprint arXiv:2102.11582},
-  year={2021}
-}
-```
-
-## Dependencies
-
-The code is based on PyTorch and requires a few further dependencies, listed in [environment.yml](environment.yml). It should work with newer versions as well.
-
-
-## OoD Detection
-
-### Datasets
-
-For OoD detection, you can train on [*CIFAR-10/100*](https://www.cs.toronto.edu/~kriz/cifar.html). You can also train on [*Dirty-MNIST*](https://blackhc.github.io/ddu_dirty_mnist/) by downloading *Ambiguous-MNIST* (```amnist_labels.pt``` and ```amnist_samples.pt```) from [here](https://github.com/BlackHC/ddu_dirty_mnist/releases/tag/data-v0.6.0) and using the following training instructions.
-
 ### Training
 
 In order to train a model for the OoD detection task, use the [train.py](train.py) script. Following are the main parameters for training:
@@ -198,23 +168,35 @@ The implementation is based on [DDU](https://github.com/omegafragger/DDU), with 
     
 ## Training
 
-Use `train.py` to train a single model.
-
-```bash
-python train.py --seed 1 --dataset cifar10 --model wide_resnet -sn -mod --coeff 3.0
-```
+In order to train a model, use the [train.py](train.py) script. 
 
 Key arguments:
-
 - `--dataset {cifar10,cifar100,svhn,imagenet,tinyimagenet}` – dataset for training.
 - `--dataset-root PATH` – root directory for datasets.
 - `--model {lenet,resnet18,resnet50,wide_resnet,vgg16,...}` – network architecture.
-- `-sn` / `--coeff` – enable spectral normalization and set its coefficient.
+- `-sn` / `--coeff` – enable spectral normalization (available for wide_resnet, vgg16 and resnets).
 - `-mod` – use architectural modifications (leaky ReLU + average pooling in skip connections).
 - `-b` – batch size.
 - `-e` – number of training epochs.
 - `--lr`, `--mom`, `--opt` – optimizer settings.
 - `--save-path PATH` – where to save checkpoints.
+
+As an example, in order to train a Wide-ResNet-28-10 with spectral normalization and architectural modifications on CIFAR-10, use the following:
+```
+python train.py \
+       --seed 1 \
+       --dataset cifar10 \
+       --model wide_resnet \
+       -sn -mod \
+       --coeff 3.0 
+```
+Similarly, to train a VGG-16 without spectral normalization on CIFAR-100, use:
+```
+python train.py \
+       --seed 1 \
+       --dataset cifar100 \
+       --model vgg16
+```
 
 ## Evaluation
 
