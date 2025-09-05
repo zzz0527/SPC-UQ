@@ -183,103 +183,61 @@ Similarly, to evaluate the above model using feature density, set ```--model-typ
 }
 ```
 
-### Results
 
-#### Dirty-MNIST
+# Image Classification
 
-To visualise DDU's performance on Dirty-MNIST (i.e., Fig. 1 of the paper), use [fig_1_plot.ipynb](notebooks/fig_1_plot.ipynb). The notebook requires a pretrained LeNet, VGG-16 and ResNet-18 with spectral normalization trained on Dirty-MNIST and visualises the softmax entropy and feature density for Dirty-MNIST (iD) samples vs Fashion-MNIST (OoD) samples. The notebook also visualises the softmax entropies of MNIST vs Ambiguous-MNIST samples for the ResNet-18+SN model (Fig. 2 of the paper). The following figure shows the output of the notebook for the LeNet, VGG-16 and ResNet18+SN model we trained on Dirty-MNIST.
+This directory implements deterministic uncertainty methods for image classification and out-of-distribution (OoD) detection on datasets such as CIFAR-10/100, SVHN, TinyImageNet, and ImageNet.
 
-<p align="center">
-  <img src="vis/dirty_mnist_vis.png" width="500" />
-</p>
+## Dependencies
 
-#### CIFAR-10 vs SVHN
+Python 3 with
 
-The following table presents results for a Wide-ResNet-28-10 architecture trained on CIFAR-10 with SVHN as the OoD dataset. For the full set of results, refer to the [paper](https://arxiv.org/abs/2102.11582).
+- PyTorch
+- Torchvision
+- NumPy
+- SciPy
+- Matplotlib
+- seaborn
+- scikit-learn
+- tensorboard
+- tqdm
 
-| Method  | Aleatoric Uncertainty | Epistemic Uncertainty | Test Accuracy | Test ECE | AUROC |
-| ---  | --- | --- | --- | --- | --- |
-| Softmax  | Softmax Entropy | Softmax Entropy | 95.98+-0.02 | 0.85+-0.02 | 94.44+-0.43 |
-| [Energy-based](https://arxiv.org/abs/2010.03759) | Softmax Entropy | Softmax Density | 95.98+-0.02 | 0.85+-0.02 | 94.56+-0.51 |
-| [5-Ensemble](https://arxiv.org/abs/1612.01474)  | Predictive Entropy | Predictive Entropy | 96.59+-0.02 | 0.76+-0.03 | 97.73+-0.31 |
-| DDU (ours)  | Softmax Entropy | GMM Density | 95.97+-0.03 | 0.85+-0.04 | 98.09+-0.10 |
+## Training
 
+Use `train.py` to train a single model.
 
-## Active Learning
-
-To run active learning experiments, use ```active_learning_script.py```. You can run active learning experiments on both [MNIST](http://yann.lecun.com/exdb/mnist/) as well as [Dirty-MNIST](https://blackhc.github.io/ddu_dirty_mnist/). When running with Dirty-MNIST, you will need to provide a pretrained model on Dirty-MNIST to distinguish between clean MNIST and Ambiguous-MNIST samples. The following are the main command line arguments for ```active_learning_script.py```.
-```
---seed: seed used for initializing the first model (later experimental runs will have seeds incremented by 1)
---model: model architecture to train (resnet18)
--ambiguous: whether to use ambiguous MNIST during training. If this is set to True, the models will be trained on Dirty-MNIST, otherwise they will train on MNIST.
---dataset-root: /path/to/amnist_labels.pt and amnist_samples.pt/
---trained-model: model architecture of pretrained model to distinguish clean and ambiguous MNIST samples
--tsn: if pretrained model has been trained using spectral normalization
---tcoeff: coefficient of spectral normalization used on pretrained model
--tmod: if pretrained model has been trained using architectural modifications (leaky ReLU and average pooling on skip connections)
---saved-model-path: /path/to/saved/pretrained/model/
---saved-model-name: name of the saved pretrained model file
---threshold: Threshold of softmax entropy to decide if a sample is ambiguous (samples having higher softmax entropy than threshold will be considered ambiguous)
---subsample: number of clean MNIST samples to use to subsample clean MNIST
--sn: whether to use spectral normalization during training
---coeff: coefficient of spectral normalization during training
--mod: whether to use architectural modifications (leaky ReLU and average pooling on skip connections) during training
---al-type: type of active learning acquisition model (softmax/ensemble/gmm)
--mi: whether to use mutual information for ensemble al-type
---num-initial-samples: number of initial samples in the training set
---max-training-samples: maximum number of training samples
---acquisition-batch-size: batch size for each acquisition step
+```bash
+python train.py --seed 1 --dataset cifar10 --model wide_resnet -sn -mod --coeff 3.0
 ```
 
-As an example, to run the active learning experiment on MNIST using the DDU method, use:
-```
-python active_learning_script.py \
-       --seed 1 \
-       --model resnet18 \
-       -sn -mod \
-       --al-type gmm
-```
-Similarly, to run the active learning experiment on Dirty-MNIST using the DDU baseline, with a pretrained ResNet-18 with SN to distinguish clean and ambiguous MNIST samples, use the following:
-```
-python active_learning_script.py \
-       --seed 1 \
-       --model resnet18 \
-       -sn -mod \
-       -ambiguous \
-       --dataset-root /home/user/amnist/ \
-       --trained-model resnet18 \
-       -tsn \
-       --saved-model-path /path/to/pretrained/model \
-       --saved-model-name resnet18_sn_3.0_1_350.model \
-       --threshold 1.0 \
-       --subsample 1000 \
-       --al-type gmm
+Key arguments:
+
+- `--dataset {cifar10,cifar100,svhn,imagenet,tinyimagenet}` – dataset for training.
+- `--dataset-root PATH` – root directory for datasets.
+- `--model {lenet,resnet18,resnet50,wide_resnet,vgg16,...}` – network architecture.
+- `-sn` / `--coeff` – enable spectral normalization and set its coefficient.
+- `-mod` – use architectural modifications (leaky ReLU + average pooling in skip connections).
+- `-b` – batch size.
+- `-e` – number of training epochs.
+- `--lr`, `--mom`, `--opt` – optimizer settings.
+- `--save-path PATH` – where to save checkpoints.
+
+## Evaluation
+
+`evaluate.py` loads saved checkpoints and reports classification accuracy and OoD metrics.
+
+```bash
+python evaluate.py --seed 1 --dataset cifar10 --ood_dataset svhn --model wide_resnet --model-type gmm --load-path path/to/models/
 ```
 
-### Results
+Important options:
 
-The active learning script stores all results in json files. The MNIST test set accuracy is stored in a json file with the following structure:
-```
-{
-    "experiment run": list of MNIST test set accuracies one per acquisition step
-}
-```
-When using ambiguous samples in the pool set, the script also stores the fraction of ambiguous samples acquired in each step in the following json:
-```
-{
-    "experiment run": list of fractions of ambiguous samples in the acquired training set
-}
-```
+- `--ood_dataset` – dataset used as out-of-distribution data.
+- `--load-path PATH` – directory containing saved models.
+- `--model-type {softmax,ensemble,gmm,spc,edl,oc,joint}` – evaluation method.
+- `--runs` – number of runs to aggregate.
+- `--ensemble` – number of models per run for ensembles.
+- `--val_size` – fraction of the training data held out for validation.
 
-### Visualisation
+Additional scripts include `train_ensemble.py` for training ensembles and `evaluate_laplace.py` for Laplace approximation evaluation.
 
-To visualise results from the above json files, use the [al_plot.ipynb](notebooks/al_plot.ipynb) notebook. The following diagram shows the performance of different baselines (softmax, ensemble PE, ensemble MI and DDU) on MNIST and Dirty-MNIST.
-
-<p align="center">
-  <img src="vis/al_plots.png" width="700" />
-</p>
-
-
-## Questions
-
-For any questions, please feel free to raise an issue or email us directly. Our emails can be found on the [paper](https://arxiv.org/abs/2102.11582).
