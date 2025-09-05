@@ -1,16 +1,29 @@
-### Training
+# Image Classification
 
-In order to train a model for the OoD detection task, use the [train.py](train.py) script. Following are the main parameters for training:
-```
---seed: seed for initialization
---dataset: dataset used for training (cifar10/cifar100/dirty_mnist)
---dataset-root: /path/to/amnist_labels.pt and amnist_samples.pt/ (if training on dirty-mnist)
---model: model to train (wide_resnet/vgg16/resnet18/resnet50/lenet)
--sn: whether to use spectral normalization (available for wide_resnet, vgg16 and resnets)
---coeff: Coefficient for spectral normalization
--mod: whether to use architectural modifications (leaky ReLU + average pooling in skip connections)
---save-path: path/for/saving/model/
-```
+This directory contains experiments for **image classification** on standard benchmarks including **CIFAR-10**, **CIFAR-100**, **SVHN**, **TinyImageNet**, and **ImageNet**.  
+
+The implementation is based on [DDU](https://github.com/omegafragger/DDU), with the following extensions:
+- Additional **baseline methods** (e.g., Laplace Approximation, Evidential models, Orthonormal Certificates).  
+- The OOD detection task is **extended** beyond traditional OOD samples to include:
+  - **Misclassification detection**  
+  - **Adversarial sample detection**  
+  - **Classical OOD detection**
+
+    
+## Training
+
+In order to train a model, use the [train.py](train.py) script. 
+
+Key arguments:
+- `--dataset {cifar10,cifar100,svhn,imagenet,tinyimagenet}` – dataset for training.
+- `--dataset-root PATH` – root directory for datasets.
+- `--model {lenet,resnet18,resnet50,wide_resnet,vgg16,...}` – network architecture.
+- `-sn` / `--coeff` – enable spectral normalization (available for wide_resnet, vgg16 and resnets).
+- `-mod` – use architectural modifications (leaky ReLU + average pooling in skip connections).
+- `-b` – batch size.
+- `-e` – number of training epochs.
+- `--lr`, `--mom`, `--opt` – optimizer settings.
+- `--save-path PATH` – where to save checkpoints.
 
 As an example, in order to train a Wide-ResNet-28-10 with spectral normalization and architectural modifications on CIFAR-10, use the following:
 ```
@@ -21,18 +34,15 @@ python train.py \
        -sn -mod \
        --coeff 3.0 
 ```
-Similarly, to train a ResNet-18 with spectral normalization on Dirty-MNIST, use:
+Similarly, to train a VGG-16 without spectral normalization on CIFAR-100, use:
 ```
 python train.py \
        --seed 1 \
-       --dataset dirty-mnist \
-       --dataset-root /home/user/amnist/ \
-       --model resnet18 \
-       -sn \
-       --coeff 3.0
+       --dataset cifar100 \
+       --model vgg16
 ```
 
-### Evaluation
+## Evaluation
 
 To evaluate trained models, use [evaluate.py](evaluate.py). This script can evaluate and aggregate results over multiple experimental runs. For example, if the pretrained models are stored in a directory path ```/home/user/models```, store them using the following directory structure:
 ```
@@ -152,53 +162,6 @@ Similarly, to evaluate the above model using feature density, set ```--model-typ
     "info": {dictionary of args}
 }
 ```
-
-
-# Image Classification
-
-This directory contains experiments for **image classification** on standard benchmarks including **CIFAR-10**, **CIFAR-100**, **SVHN**, **TinyImageNet**, and **ImageNet**.  
-
-The implementation is based on [DDU](https://github.com/omegafragger/DDU), with the following extensions:
-- Additional **baseline methods** (e.g., Laplace Approximation, Evidential models, Orthonormal Certificates).  
-- The OOD detection task is **extended** beyond traditional OOD samples to include:
-  - **Misclassification detection**  
-  - **Adversarial sample detection**  
-  - **Classical OOD detection**
-
-    
-## Training
-
-In order to train a model, use the [train.py](train.py) script. 
-
-Key arguments:
-- `--dataset {cifar10,cifar100,svhn,imagenet,tinyimagenet}` – dataset for training.
-- `--dataset-root PATH` – root directory for datasets.
-- `--model {lenet,resnet18,resnet50,wide_resnet,vgg16,...}` – network architecture.
-- `-sn` / `--coeff` – enable spectral normalization (available for wide_resnet, vgg16 and resnets).
-- `-mod` – use architectural modifications (leaky ReLU + average pooling in skip connections).
-- `-b` – batch size.
-- `-e` – number of training epochs.
-- `--lr`, `--mom`, `--opt` – optimizer settings.
-- `--save-path PATH` – where to save checkpoints.
-
-As an example, in order to train a Wide-ResNet-28-10 with spectral normalization and architectural modifications on CIFAR-10, use the following:
-```
-python train.py \
-       --seed 1 \
-       --dataset cifar10 \
-       --model wide_resnet \
-       -sn -mod \
-       --coeff 3.0 
-```
-Similarly, to train a VGG-16 without spectral normalization on CIFAR-100, use:
-```
-python train.py \
-       --seed 1 \
-       --dataset cifar100 \
-       --model vgg16
-```
-
-## Evaluation
 
 `evaluate.py` loads saved checkpoints and reports classification accuracy and OoD metrics.
 
