@@ -186,22 +186,16 @@ Similarly, to evaluate the above model using feature density, set ```--model-typ
 
 # Image Classification
 
-This directory implements deterministic uncertainty methods for image classification and out-of-distribution (OoD) detection on datasets such as CIFAR-10/100, SVHN, TinyImageNet, and ImageNet.
+This directory contains experiments for **image classification** on standard benchmarks including **CIFAR-10**, **CIFAR-100**, **SVHN**, **TinyImageNet**, and **ImageNet**.  
 
-## Dependencies
+The implementation is based on [DDU](https://github.com/omegafragger/DDU), with the following extensions:
+- Additional **baseline methods** (e.g., Laplace Approximation, Evidential models, Orthonormal Certificates).  
+- The OOD detection task is **extended** beyond traditional OOD samples to include:
+  - **Misclassification detection**  
+  - **Adversarial sample detection**  
+  - **Classical OOD detection**
 
-Python 3 with
-
-- PyTorch
-- Torchvision
-- NumPy
-- SciPy
-- Matplotlib
-- seaborn
-- scikit-learn
-- tensorboard
-- tqdm
-
+    
 ## Training
 
 Use `train.py` to train a single model.
