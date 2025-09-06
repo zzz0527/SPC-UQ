@@ -9,7 +9,20 @@ The implementation is based on [DDU](https://github.com/omegafragger/DDU), with 
   - **Adversarial sample detection**  
   - **Classical OOD detection**
 
-    
+
+## Datasets
+- **CIFAR-10**, **CIFAR-100**, and **SVHN**  
+  These datasets will be downloaded automatically by the code.  
+
+- **TinyImageNet** and **ImageNet-1K**  
+  Due to their large size, users need to **manually download** them. Please follow the official instructions for preparation.  
+
+- **ImageNet-O/A**  
+  Please follow the download guide provided here:  
+  [hendrycks/natural-adv-examples](https://github.com/hendrycks/natural-adv-examples?tab=readme-ov-file)  
+
+  **Note:** All datasets should be placed in the [data](data) `data/` directory.
+
 ## Training
 
 In order to train a model, use the [train.py](train.py) script. 
@@ -95,8 +108,8 @@ model_ensemble
 Following are the main parameters for evaluation:
 ```
 --seed: seed used for initializing the first trained model
---dataset: dataset used for training (cifar10/cifar100)
---ood_dataset: OoD dataset to compute AUROC
+--dataset: dataset used for training (cifar10/cifar100/imagenet)
+--ood_dataset: OOD dataset (ood_union/svhn/tinyimagenet/imagenet_o)
 --load-path: /path/to/pretrained/models/
 --model: model architecture to load (wide_resnet/vgg16)
 --runs: number of experimental runs
@@ -104,79 +117,35 @@ Following are the main parameters for evaluation:
 --coeff: Coefficient for spectral normalization
 -mod: whether the model was trained using architectural modifications
 --ensemble: number of models in the ensemble
---model-type: type of model to load for evaluation (softmax/ensemble/gmm)
+--model-type: type of model to load for evaluation (softmax/ensemble/edl/gmm/oc/spc)
 ```
-As an example, in order to evaluate a Wide-ResNet-28-10 with spectral normalization and architectural modifications on CIFAR-10 with OoD dataset as SVHN, use the following:
+
+As an example, in order to evaluate a Wide-ResNet-28-10 with spectral normalization and architectural modifications on CIFAR-10 with the union OOD dataset, use the following:
 ```
 python evaluate.py \
-       --seed 1 \
-       --dataset cifar10 \
-       --ood_dataset svhn \
-       --load-path /path/to/pretrained/models/ \
-       --model wide_resnet \
-       --runs 5 \
-       -sn -mod \
-       --coeff 3.0 \
-       --model-type softmax
-```
-Similarly, to evaluate the above model using feature density, set ```--model-type gmm```. The evaluation script assumes that the seeds of models trained in consecutive runs differ by 1. The script stores the results in a json file with the following structure: 
-```
-{
-    "mean": {
-        "accuracy": mean accuracy,
-        "ece": mean ECE,
-        "m1_auroc": mean AUROC using log density / MI for ensembles,
-        "m1_auprc": mean AUPRC using log density / MI for ensembles,
-        "m2_auroc": mean AUROC using entropy / PE for ensembles,
-        "m2_auprc": mean AUPRC using entropy / PE for ensembles,
-        "t_ece": mean ECE (post temp scaling)
-        "t_m1_auroc": mean AUROC using log density / MI for ensembles (post temp scaling),
-        "t_m1_auprc": mean AUPRC using log density / MI for ensembles (post temp scaling),
-        "t_m2_auroc": mean AUROC using entropy / PE for ensembles (post temp scaling),
-        "t_m2_auprc": mean AUPRC using entropy / PE for ensembles (post temp scaling)
-    },
-    "std": {
-        "accuracy": std error accuracy,
-        "ece": std error ECE,
-        "m1_auroc": std error AUROC using log density / MI for ensembles,
-        "m1_auprc": std error AUPRC using log density / MI for ensembles,
-        "m2_auroc": std error AUROC using entropy / PE for ensembles,
-        "m2_auprc": std error AUPRC using entropy / PE for ensembles,
-        "t_ece": std error ECE (post temp scaling),
-        "t_m1_auroc": std error AUROC using log density / MI for ensembles (post temp scaling),
-        "t_m1_auprc": std error AUPRC using log density / MI for ensembles (post temp scaling),
-        "t_m2_auroc": std error AUROC using entropy / PE for ensembles (post temp scaling),
-        "t_m2_auprc": std error AUPRC using entropy / PE for ensembles (post temp scaling)
-    },
-    "values": {
-        "accuracy": accuracy list,
-        "ece": ece list,
-        "m1_auroc": AUROC list using log density / MI for ensembles,
-        "m2_auroc": AUROC list using entropy / PE for ensembles,
-        "t_ece": ece list (post temp scaling),
-        "t_m1_auroc": AUROC list using log density / MI for ensembles (post temp scaling),
-        "t_m1_auprc": AUPRC list using log density / MI for ensembles (post temp scaling),
-        "t_m2_auroc": AUROC list using entropy / PE for ensembles (post temp scaling),
-        "t_m2_auprc": AUPRC list using entropy / PE for ensembles (post temp scaling)
-    },
-    "info": {dictionary of args}
-}
+    --seed 1 \
+    --dataset cifar10 \
+    --ood_dataset ood_union \
+    --load-path model_vgg_10 \
+    --model vgg16 \
+    --runs 25 \
+    --model-type spc
 ```
 
-`evaluate.py` loads saved checkpoints and reports classification accuracy and OoD metrics.
-
-```bash
-python evaluate.py --seed 1 --dataset cifar10 --ood_dataset svhn --model wide_resnet --model-type gmm --load-path path/to/models/
+In order to evaluate a Wide-ResNet-28-10 with spectral normalization and architectural modifications on CIFAR-10 with OOD dataset as SVHN, use the following:
+```
+python evaluate.py \
+    --seed 1 \
+    --dataset cifar10 \
+    --ood_dataset svhn \
+    --load-path model_wide_10 \
+    --model wide_resnet \
+    --runs 25 \
+    -sn -mod \
+    --coeff 3.0 \
+    --model-type spc
 ```
 
-Important options:
+Additional script `evaluate_laplace.py` for Laplace approximation evaluation.
 
-- `--ood_dataset` – dataset used as out-of-distribution data.
-- `--load-path PATH` – directory containing saved models.
-- `--model-type {softmax,ensemble,gmm,spc,edl,oc,joint}` – evaluation method.
-- `--runs` – number of runs to aggregate.
-- `--ensemble` – number of models per run for ensembles.
-- `--val_size` – fraction of the training data held out for validation.
-
-Additional scripts include `train_ensemble.py` for training ensembles and `evaluate_laplace.py` for Laplace approximation evaluation.
-
+We provide bash scripts for all baseline methods used in our experiments. If you download the datasets and pre-trained models into this directory, you can directly execute the corresponding script to reproduce results.
