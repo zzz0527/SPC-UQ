@@ -10,18 +10,21 @@ The implementation is based on [DDU](https://github.com/omegafragger/DDU), with 
   - **Classical OOD detection**
 
 
-## Datasets
+##  Dataset Preparation
 - **CIFAR-10**, **CIFAR-100**, and **SVHN**  
   These datasets will be downloaded automatically by the code.  
 
 - **TinyImageNet** and **ImageNet-1K**  
-  Due to their large size, users need to **manually download** them. Please follow the official instructions for preparation.  
+  Due to their large size, users need to **manually download** them. Official links:  
+  - [TinyImageNet (CS231n version)](http://cs231n.stanford.edu/tiny-imagenet-200.zip)  
+  - [ImageNet-1K](https://www.image-net.org/)  
 
 - **ImageNet-O/A**  
   Please follow the download guide provided here:  
   [hendrycks/natural-adv-examples](https://github.com/hendrycks/natural-adv-examples?tab=readme-ov-file)  
 
-  **Note:** All datasets should be placed in the [data](data) `data/` directory.
+  **Note:** All datasets should be placed in the [data](data) directory.
+
 
 ## Trained Models
 We provide several trained models to facilitate **reproducibility** of our experiments.  
@@ -31,7 +34,6 @@ Once downloaded, you can directly run the provided evaluation scripts without ad
 
 
 ## Training
-
 In order to train a model, use the [train.py](train.py) script. 
 
 Key arguments:
