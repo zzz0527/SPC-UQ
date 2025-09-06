@@ -12,6 +12,10 @@ Train a depth model by selecting a method and other hyperparameters:
 ```bash
 python3 train_depth.py --model spc --batch-size 32 --iters 60000 --learning-rate 1e-4
 ```
+We provide several trained models to facilitate **reproducibility** of our experiments.  
+Please download the models from the links below (to be provided) and place them **directly under this directory**:
+
+Once downloaded, you can directly run the provided evaluation scripts without additional training.  
 
 ### Arguments
 - `--model` *(default: spc)* — one of `evidential`, `qrevidential`, `dropout`, `ensemble`, `qroc`, `spc`.
