@@ -28,6 +28,6 @@ The benchmarks are lightweight and can run on **CPU-only devices** (GPU is optio
 - `--num-trials` *(default: 20)* — number of random train/test splits.
 - `--num-epochs` *(default: 400)* — training epochs per trial.
 - `--datasets` — subset of datasets to evaluate; default is all of them.
-- `--noise` — optionally augment targets with `tri`-modal or `log`-normal noise.
+- `--noise` — optionally augment targets with tri-modal or log-normal noise.
 
 The script reports RMSE, coverage, calibration error and other statistics for each dataset/model combination.
