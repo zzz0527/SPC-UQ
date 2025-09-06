@@ -2,7 +2,7 @@
 
 This directory contains experiments for **multimodal classification** on the multimodal UQ benchmark: **LUMA** (Learning from Uncertain and Multimodal Data)
 
-The implementation is based on [LUMA](https://github.com/omegafragger/DDU), with the implementation of SPC-UQ.
+The implementation is based on [LUMA](https://osf.io/8ph6y/?view_only=8272969d8cd34c0b9459659fb4f41507), with the implementation of SPC-UQ.
 
 ## Overview
 
