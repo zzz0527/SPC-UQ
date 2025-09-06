@@ -23,6 +23,13 @@ The implementation is based on [DDU](https://github.com/omegafragger/DDU), with 
 
   **Note:** All datasets should be placed in the [data](data) `data/` directory.
 
+## Trained Models
+We provide several trained models to facilitate **reproducibility** of our experiments.  
+Please download the models from the links below (to be provided) and place them **directly under this directory**:
+
+Once downloaded, you can directly run the provided evaluation scripts without additional training.  
+
+
 ## Training
 
 In order to train a model, use the [train.py](train.py) script. 
@@ -71,40 +78,7 @@ models
 └── Run5
     └── wide_resnet_5_350.model
 ```
-For an ensemble of models, store the models using the following directory structure:
-```
-model_ensemble
-├── Run1
-│   ├── wide_resnet_1_350.model
-│   ├── wide_resnet_2_350.model
-│   ├── wide_resnet_3_350.model
-│   ├── wide_resnet_4_350.model
-│   └── wide_resnet_5_350.model
-├── Run2
-│   ├── wide_resnet_10_350.model
-│   ├── wide_resnet_6_350.model
-│   ├── wide_resnet_7_350.model
-│   ├── wide_resnet_8_350.model
-│   └── wide_resnet_9_350.model
-├── Run3
-│   ├── wide_resnet_11_350.model
-│   ├── wide_resnet_12_350.model
-│   ├── wide_resnet_13_350.model
-│   ├── wide_resnet_14_350.model
-│   └── wide_resnet_15_350.model
-├── Run4
-│   ├── wide_resnet_16_350.model
-│   ├── wide_resnet_17_350.model
-│   ├── wide_resnet_18_350.model
-│   ├── wide_resnet_19_350.model
-│   └── wide_resnet_20_350.model
-└── Run5
-    ├── wide_resnet_21_350.model
-    ├── wide_resnet_22_350.model
-    ├── wide_resnet_23_350.model
-    ├── wide_resnet_24_350.model
-    └── wide_resnet_25_350.model
-```
+
 Following are the main parameters for evaluation:
 ```
 --seed: seed used for initializing the first trained model
