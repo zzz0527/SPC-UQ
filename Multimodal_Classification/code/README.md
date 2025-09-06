@@ -35,6 +35,9 @@ conda activate luma_env
 
 
 ### Usage
+We have integrated SPC-UQ into the LUMA benchmark framework.  
+To run training and evaluation, simply execute [compile_and_train.sh](compile_and_train.sh)
+
 The provided Python tool allows compiling different versions of the dataset with various amounts and types of uncertainties.
 
 To compile the dataset with specified uncertainties, create or edit the configuration file similar to the files in `cfg` directory, and run:
