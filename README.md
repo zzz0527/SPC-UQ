@@ -29,7 +29,7 @@ Each directory provides scripts to reproduce the corresponding experiments.
 ## Installation
 
 We recommend using [conda](https://docs.conda.io/en/latest/) to manage dependencies.  
-All required packages and versions are specified in `environment.yml`.
+All required packages and versions except Multimodal_Classification are specified in `environment.yml`.
 
 ### Step 1: Clone the repository
 ```bash
