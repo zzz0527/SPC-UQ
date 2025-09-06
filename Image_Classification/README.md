@@ -5,9 +5,9 @@ This directory contains experiments for **image classification** on standard ben
 The implementation is based on [DDU](https://github.com/omegafragger/DDU), with the following extensions:
 - Additional **baseline methods** (e.g., Laplace Approximation, Evidential models, Orthonormal Certificates).  
 - The OOD detection task is **extended** beyond traditional OOD samples to include:
-  - **Misclassification detection**  
-  - **Adversarial sample detection**  
-  - **Classical OOD detection**
+  - Misclassification detection  
+  - Adversarial sample detection  
+  - Classical OOD detection
 
 
 ##  Dataset Preparation
