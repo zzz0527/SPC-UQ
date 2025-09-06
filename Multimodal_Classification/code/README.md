@@ -1,4 +1,8 @@
-# LUMA: Learning from Uncertain and Multimodal Data
+# Multimodal Classification
+
+This directory contains experiments for **multimodal classification** on the multimodal UQ benchmark: **LUMA** (Learning from Uncertain and Multimodal Data)
+
+The implementation is based on [LUMA](https://github.com/omegafragger/DDU), with the implementation of SPC-UQ.
 
 ## Overview
 
