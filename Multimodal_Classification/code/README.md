@@ -19,11 +19,7 @@ LUMA consists of:
 The dataset allows controlled injection of uncertainties, facilitating the study of uncertainty quantification in multimodal data.
 
 ## Getting Started
-
-### Prerequisites
-
-- Anaconda / Miniconda
-- Git
+Download dataset from: https://osf.io/8ph6y/?view_only=8272969d8cd34c0b9459659fb4f41507
 
 ### Installation
 Copy the data folder into this repository:
