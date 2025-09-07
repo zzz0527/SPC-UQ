@@ -41,6 +41,8 @@ cd SPC-UQ
 conda env create -f environment.yml
 conda activate spc_uq
 ```
+### Step 3: Download pretrained weights and datasets
+Pretrained weights and datasets are available on https://huggingface.co/zzz0527/SPC-UQ
 
 ## Usage
 
