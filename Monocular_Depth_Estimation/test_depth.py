@@ -18,12 +18,6 @@ from sklearn import metrics
 # Set device (GPU or CPU)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Argument parser for cached results
-parser = argparse.ArgumentParser()
-parser.add_argument("--load-pkl", action='store_true',
-                    help="Load predictions from a cached pickle file or recompute from scratch")
-args = parser.parse_args()
-
 class Model(Enum):
     GROUND_TRUTH = "GroundTruth"
     DROPOUT = "Dropout"
@@ -34,7 +28,7 @@ class Model(Enum):
     SPC = "SPC"
 
 # Directory settings
-save_dir = "save"
+save_dir = "pretrained_model_weights"
 
 # Pretrained model paths for each method
 trained_models = {
@@ -245,8 +239,8 @@ def get_prediction_summary(method, model, x_batch, y_batch, vis=False):
 
 def load_data():
     def load_depth():
-        train = h5py.File("data/depth_train.h5", "r")
-        test = h5py.File("data/depth_test.h5", "r")
+        train = h5py.File("datasets/depth_train.h5", "r")
+        test = h5py.File("datasets/depth_test.h5", "r")
         return (train["image"], train["depth"]), (test["image"], test["depth"])
 
     def load_apollo():

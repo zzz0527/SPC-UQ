@@ -20,8 +20,8 @@ args = parser.parse_args()
 
 ### Load the data
 def _load_depth():
-    train = h5py.File("data/depth_train.h5", "r")
-    test = h5py.File("data/depth_test.h5", "r")
+    train = h5py.File("datasets/depth_train.h5", "r")
+    test = h5py.File("datasets/depth_test.h5", "r")
     return (train["image"][:], train["depth"][:]), (test["image"][:], test["depth"][:])
 
 
