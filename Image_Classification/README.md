@@ -25,12 +25,10 @@ The implementation is based on [DDU](https://github.com/omegafragger/DDU), with 
 
 **Note:** All datasets should be placed in the [data](data) directory.
 
+## Pretrained model weights
+We provide several pretrained model weights to facilitate **reproducibility** of our experiments.
 
-## Trained Models
-We provide several trained models to facilitate **reproducibility** of our experiments.  
-Please download the models from the links below (to be provided) and place them **directly under this directory**:
-
-Once downloaded, you can directly run the provided evaluation scripts without additional training.  
+Please download the weights from our [Hugging Face directory](https://huggingface.co/zzz0527/SPC-UQ/tree/main/SPC-UQ/Image_Classification) and place them **directly under this directory**. Once downloaded, you can directly run the provided evaluation scripts without additional training.  
 
 
 ## Training
