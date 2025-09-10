@@ -5,6 +5,7 @@ This directory demonstrates monocular depth estimation with uncertainty quantifi
 ## Dataset
 - **In-distribution** training and test sets are stored as HDF5 files `depth_train.h5` and `depth_test.h5` under `data/`.
 - **Out-of-distribution** evaluation uses `apolloscape_test.h5` placed in the same `data/` directory.
+Please download the dataset from our [Hugging Face directory](https://huggingface.co/zzz0527/SPC-UQ/tree/main/SPC-UQ/Monocular_Depth_Estimation).
 
 ## Training
 Train a depth model by selecting a method and other hyperparameters:
@@ -13,7 +14,7 @@ Train a depth model by selecting a method and other hyperparameters:
 python3 train_depth.py --model spc --batch-size 32 --iters 60000 --learning-rate 1e-4
 ```
 We provide several trained models to facilitate **reproducibility** of our experiments.  
-Please download the models from the links below (to be provided) and place them **directly under this directory**:
+Please download the models from our [Hugging Face directory](https://huggingface.co/zzz0527/SPC-UQ/tree/main/SPC-UQ/Monocular_Depth_Estimation) and place them **directly under this directory**:
 
 Once downloaded, you can directly run the provided evaluation scripts without additional training.  
 
