@@ -2,7 +2,7 @@
 
 This directory contains experiments for **multimodal classification** on the multimodal UQ benchmark: **LUMA** (Learning from Uncertain and Multimodal Data)
 
-The implementation is based on [LUMA](https://osf.io/8ph6y/?view_only=8272969d8cd34c0b9459659fb4f41507), with the implementation of SPC-UQ.
+The benchmark framework is based on [LUMA](https://osf.io/8ph6y/?view_only=8272969d8cd34c0b9459659fb4f41507), with the implementation of SPC-UQ.
 
 ## Overview
 
@@ -19,7 +19,7 @@ LUMA consists of:
 The dataset allows controlled injection of uncertainties, facilitating the study of uncertainty quantification in multimodal data.
 
 ## Getting Started
-Download dataset from: https://osf.io/8ph6y/?view_only=8272969d8cd34c0b9459659fb4f41507
+Download dataset from [LUMA](https://osf.io/8ph6y/?view_only=8272969d8cd34c0b9459659fb4f41507).
 
 ### Installation
 Copy the data folder into this repository:
