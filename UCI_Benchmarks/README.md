@@ -22,7 +22,7 @@ Run the benchmark script from this directory:
 python3 run_uci_dataset_tests.py [--num-trials N] [--num-epochs E] [--datasets d1 d2 ...] [--noise {tri,log}]
 ```
 
-The benchmarks are lightweight and can run on **CPU-only devices** (GPU is optional for faster training).  
+The benchmarks are lightweight and can run on **CPU-only devices**.  
 
 ### Arguments
 - `--num-trials` *(default: 20)* — number of random train/test splits.
@@ -31,3 +31,8 @@ The benchmarks are lightweight and can run on **CPU-only devices** (GPU is optio
 - `--noise` — optionally augment targets with tri-modal or log-normal noise.
 
 The script reports RMSE, coverage, calibration error and other statistics for each dataset/model combination.
+
+### Pretrained model weights
+We also provide pretrained model weights to facilitate **reproducibility** of our experiments.  
+
+Please download the weights from our [Hugging Face directory](https://huggingface.co/zzz0527/SPC-UQ/tree/main/SPC-UQ/UCI_Benchmarks) and place them in the `pretrained_model_weights/` directory. Once downloaded, you can directly run the evaluation without training.  
