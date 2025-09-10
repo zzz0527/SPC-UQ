@@ -13,8 +13,8 @@ Train a depth model by selecting a method and other hyperparameters:
 ```bash
 python3 train_depth.py --model spc --batch-size 32 --iters 60000 --learning-rate 1e-4
 ```
-We provide several trained models to facilitate **reproducibility** of our experiments.  
-Please download the models from our [Hugging Face directory](https://huggingface.co/zzz0527/SPC-UQ/tree/main/SPC-UQ/Monocular_Depth_Estimation) and place them **directly under this directory**:
+We provide several pretrained model weights to facilitate **reproducibility** of our experiments.  
+Please download the weights from our [Hugging Face directory](https://huggingface.co/zzz0527/SPC-UQ/tree/main/SPC-UQ/Monocular_Depth_Estimation) and place them **directly under this directory**:
 
 Once downloaded, you can directly run the provided evaluation scripts without additional training.  
 
