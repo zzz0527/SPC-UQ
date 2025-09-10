@@ -84,7 +84,7 @@ def multi_quantile_loss(target, q_low, q_mid, q_high, tau_low=0.025, tau_mid=0.5
     return (loss_low +loss_mid + loss_high)
 
 class QROC:
-    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3,load_model=True, model_dir='save'):
+    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3,load_model=True, model_dir='pretrained_model_weights'):
         self.model = model.to(device)
         self.criterion = multi_quantile_loss
         self.optimizer = optim.Adam(model.parameters(), lr=learning_rate)

@@ -66,7 +66,7 @@ def quant_evi_loss(y_true, gamma, v, alpha, beta, quantile, coeff=1.0, reduce=Tr
 class QRevidential:
     """Trainer class for Evidential Quantile Regression."""
 
-    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3, lam=0.0,load_model=True, model_dir='save'):
+    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3, lam=0.0,load_model=True, model_dir='pretrained_model_weights'):
         self.model = model.to(device)
         self.quantiles = [0.025, 0.5, 0.975]
         self.coeff = 0.5

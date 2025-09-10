@@ -45,7 +45,7 @@ def calibration_loss(y_pred, y_true, quantile, scale=True):
 
 
 class SPC:
-    def __init__(self, model, dataset="", noise="", tag="", learning_rate=1e-3,load_model=True, model_dir='save'):
+    def __init__(self, model, dataset="", noise="", tag="", learning_rate=1e-3,load_model=True, model_dir='pretrained_model_weights'):
         self.model = model.to(device)
         self.criterion = nn.MSELoss()
 

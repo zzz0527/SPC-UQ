@@ -30,7 +30,7 @@ def gaussian_nll_loss(y, mu, sigma, reduce=True):
 
 
 class Ensemble:
-    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3, load_model=True, model_dir='save'):
+    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3, load_model=True, model_dir='pretrained_model_weights'):
         self.model = model.to(device)
         self.criterion = gaussian_nll_loss
         self.optimizers = [optim.Adam(m.parameters(), lr=learning_rate) for m in self.model.models]

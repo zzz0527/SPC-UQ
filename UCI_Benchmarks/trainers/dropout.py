@@ -30,7 +30,7 @@ def gaussian_nll_loss(y, mu, sigma, reduce=True):
 
 
 class Dropout:
-    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3,load_model=True, model_dir='save'):
+    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3,load_model=True, model_dir='pretrained_model_weights'):
         self.mc_samples = 5
         self.load_model=load_model
         trainer = self.__class__.__name__

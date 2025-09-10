@@ -50,7 +50,7 @@ def evidential_loss(y, mu, v, alpha, beta, lam=0.0, epsilon=1e-2):
 
 
 class Evidential:
-    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3, lam=0.0, load_model=True, model_dir='save'):
+    def __init__(self, model, dataset="", noise='', tag="", learning_rate=1e-3, lam=0.0, load_model=True, model_dir='pretrained_model_weights'):
         self.model = model.to(device)
         self.criterion = evidential_loss
         self.optimizer = optim.Adam(self.model.parameters(), lr=learning_rate)
