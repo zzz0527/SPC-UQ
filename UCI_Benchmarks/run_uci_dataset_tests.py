@@ -20,7 +20,7 @@ parser.add_argument('--datasets', nargs='+', default=[
                     'naval', 'power', 'protein', 'wine', 'yacht'])
 parser.add_argument('--noise', default='', choices=['', 'tri', 'log'])
 parser.add_argument('--load-model', action='store_false', help='Load saved model if available.')
-parser.add_argument('--model-dir', default='save', help='Directory to save/load models.')
+parser.add_argument('--model-dir', default='pretrained_model_weights', help='Directory to save/load models.')
 args = parser.parse_args()
 
 # ===================== Config Setup ======================== #
