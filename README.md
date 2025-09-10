@@ -42,7 +42,11 @@ conda env create -f environment.yml
 conda activate spc_uq
 ```
 ### Step 3: Download pretrained weights and datasets
-Pretrained weights and datasets are available on https://huggingface.co/zzz0527/SPC-UQ
+Pretrained weights and benchmark datasets are hosted on Hugging Face:  
+[https://huggingface.co/zzz0527/SPC-UQ](https://huggingface.co/zzz0527/SPC-UQ)
+
+All files follow the same directory structure as this repository.  
+Please download the datasets and pretrained models into the corresponding subdirectories under the project root.
 
 ## Usage
 
