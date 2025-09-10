@@ -5,7 +5,7 @@ This directory provides a simple experiment that trains a model on the MNIST han
 ## Dataset
 - **In-distribution**: MNIST training and test sets.
 - **Out-of-distribution**: Fashion-MNIST test set for uncertainty evaluation.
-- The loader expects the MNIST dataset under `MNIST_Classification/data`. If the dataset is not present, download it from our [Hugging Face directory](https://huggingface.co/zzz0527/SPC-UQ/tree/main/SPC-UQ/MNIST_Classification)
+- The loader expects the MNIST dataset under the [data](data) directory. If the dataset is not present, download it from our [Hugging Face directory](https://huggingface.co/zzz0527/SPC-UQ/tree/main/SPC-UQ/MNIST_Classification)
 
 ## Usage
 Run the classification script from this directory:
