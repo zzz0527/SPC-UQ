@@ -8,8 +8,8 @@ The task is defined by
 
 - Training set: 2,000 samples
 - Test set: 1,000 samples
-- In-distribution: x ∈ [-4, 4]
-- Out-of-distribution: x ∈ [-6, -4) ∪ (4, 6]
+- In-distribution data: x ∈ [-4, 4]
+- Out-of-distribution data: x ∈ [-6, -4) ∪ (4, 6]
 
 ## Running `run_cubic_tests.py`
 
@@ -20,7 +20,7 @@ The task is defined by
 ```bash
 python run_cubic_tests.py --num-epochs 5000 --data-noise log --UQ-model SPCregression
 ```
-The benchmarks are lightweight and can run on **CPU-only devices** (GPU is optional for faster training).  
+The benchmarks are lightweight and can run on **CPU-only devices**.  
 
 ### Arguments
 
