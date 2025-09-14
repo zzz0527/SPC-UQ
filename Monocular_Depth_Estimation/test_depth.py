@@ -244,7 +244,7 @@ def load_data():
         return (train["image"], train["depth"]), (test["image"], test["depth"])
 
     def load_apollo():
-        test = h5py.File("data/apolloscape_test.h5", "r")
+        test = h5py.File("datasets/apolloscape_test.h5", "r")
         return (None, None), (test["image"], test["depth"])
 
     _, (x_test, y_test) = load_depth()
