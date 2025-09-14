@@ -90,7 +90,7 @@ def _load_concrete():
     Concrete compressive strength -- quantitative -- MPa -- Output Variable
     ---------------------------------
     """
-    data_file = os.path.join(data_dir, 'concrete/Concrete_Data.xls')
+    data_file = os.path.join(data_dir, 'concrete/Concrete_Data.xlsx')
     data = pd.read_excel(data_file)
     X = data.values[:, :-1]
     y = data.values[:,  -1]
