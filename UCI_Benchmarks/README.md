@@ -19,7 +19,7 @@ The script supports the following datasets located under `UCI_Benchmarks/data/uc
 Run the benchmark script from this directory:
 
 ```bash
-python3 run_uci_dataset_tests.py [--num-trials N] [--num-epochs E] [--datasets d1 d2 ...] [--noise {tri,log}]
+python run_uci_dataset_tests.py [--num-trials N] [--num-epochs E] [--datasets d1 d2 ...] [--noise {tri,log}]
 ```
 
 The benchmarks are lightweight and can run on **CPU-only devices**.  
