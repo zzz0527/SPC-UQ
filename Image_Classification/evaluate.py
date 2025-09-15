@@ -329,7 +329,7 @@ if __name__ == "__main__":
                     net_ensemble, right_loader, wrong_loader, "mutual_information", device
                 )
 
-                adv_test_loader = create_adversarial_dataloader(net, test_loader, device, epsilon=adv_ep,batch_size=args.batch_size)
+                adv_test_loader = create_adversarial_dataloader(net_ensemble[0], test_loader, device, epsilon=adv_ep,batch_size=args.batch_size)
                 (_, _, _), (_, _, _), adv_m1_auroc, adv_m1_auprc = get_roc_auc_ensemble(
                     net_ensemble, test_loader, adv_test_loader, "entropy", device
                 )
@@ -1402,14 +1402,16 @@ if __name__ == "__main__":
 
     res_dict["info"] = vars(args)
 
-    print(f"{mean_accuracy.item() * 100:.2f} ± {std_accuracy.item() * 100:.2f}")
-    print(f"{mean_c_accuracy.item() * 100:.2f} ± {std_c_accuracy.item() * 100:.2f}")
-    print(f"{mean_ece.item()*100:.2f} ± {std_ece.item()*100:.2f}")
-    print(f"{mean_t_ece.item()*100:.2f} ± {std_t_ece.item()*100:.2f}")
-    print(f"{mean_c_ece.item() * 100:.2f} ± {std_c_ece.item() * 100:.2f}")
-    print(f"{mean_adv_m1_auroc.item()*100:.2f} ± {std_adv_m1_auroc.item()*100:.2f}")
-    print(f"{mean_err_m1_auroc.item()*100:.2f} ± {std_err_m1_auroc.item()*100:.2f}")
-    print(f"{mean_ood_m1_auroc.item()*100:.2f} ± {std_ood_m1_auroc.item()*100:.2f}")
+    print('################################################################')
+    print('Original accuracy: ', f"{mean_accuracy.item() * 100:.2f} ± {std_accuracy.item() * 100:.2f}")
+    print('Accuracy after calibration: ', f"{mean_c_accuracy.item() * 100:.2f} ± {std_c_accuracy.item() * 100:.2f}")
+    print('Original ECE: ', f"{mean_ece.item()*100:.2f} ± {std_ece.item()*100:.2f}")
+    print('ECE after Temperature Scaling: ', f"{mean_t_ece.item()*100:.2f} ± {std_t_ece.item()*100:.2f}")
+    print('ECE after SPC-calibration: ', f"{mean_c_ece.item() * 100:.2f} ± {std_c_ece.item() * 100:.2f}")
+    print('AUROC(error): ', f"{mean_err_m1_auroc.item()*100:.2f} ± {std_err_m1_auroc.item()*100:.2f}")
+    print('AUROC(adv): ', f"{mean_adv_m1_auroc.item()*100:.2f} ± {std_adv_m1_auroc.item()*100:.2f}")
+    print('AUROC(ood): ', f"{mean_ood_m1_auroc.item()*100:.2f} ± {std_ood_m1_auroc.item()*100:.2f}")
+    print('################################################################')
 
 
     with open(
