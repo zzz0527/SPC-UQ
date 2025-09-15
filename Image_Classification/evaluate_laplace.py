@@ -326,11 +326,13 @@ if __name__ == "__main__":
         return arr.mean().item(), arr.std().item() / math.sqrt(arr.shape[0])
 
     # Print summary
+    print('###########################Summary###############################')
     print_metrics(*mean_std(accuracies), "Accuracy")
     print_metrics(*mean_std(eces), "ECE")
-    print_metrics(*mean_std(adv_aurocs), "Adv AUROC")
-    print_metrics(*mean_std(err_aurocs), "Error AUROC")
-    print_metrics(*mean_std(ood_aurocs), "OOD AUROC")
+    print_metrics(*mean_std(err_aurocs), "AUROC(error)")
+    print_metrics(*mean_std(adv_aurocs), "AUROC(adv)")
+    print_metrics(*mean_std(ood_aurocs), "AUROC(ood)")
+    print('#################################################################')
 
     # Store only required metrics
     result_json = {}

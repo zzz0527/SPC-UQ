@@ -1402,7 +1402,7 @@ if __name__ == "__main__":
 
     res_dict["info"] = vars(args)
 
-    print('################################################################')
+    print('###########################Summary###############################')
     print('Original accuracy: ', f"{mean_accuracy.item() * 100:.2f} ± {std_accuracy.item() * 100:.2f}")
     print('Accuracy after calibration: ', f"{mean_c_accuracy.item() * 100:.2f} ± {std_c_accuracy.item() * 100:.2f}")
     print('Original ECE: ', f"{mean_ece.item()*100:.2f} ± {std_ece.item()*100:.2f}")
@@ -1411,7 +1411,7 @@ if __name__ == "__main__":
     print('AUROC(error): ', f"{mean_err_m1_auroc.item()*100:.2f} ± {std_err_m1_auroc.item()*100:.2f}")
     print('AUROC(adv): ', f"{mean_adv_m1_auroc.item()*100:.2f} ± {std_adv_m1_auroc.item()*100:.2f}")
     print('AUROC(ood): ', f"{mean_ood_m1_auroc.item()*100:.2f} ± {std_ood_m1_auroc.item()*100:.2f}")
-    print('################################################################')
+    print('#################################################################')
 
 
     with open(
