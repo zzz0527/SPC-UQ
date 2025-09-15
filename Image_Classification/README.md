@@ -25,6 +25,17 @@ The implementation is based on [DDU](https://github.com/omegafragger/DDU), with 
 
 **Note:** All datasets should be placed in the [data](data) directory.
 
+
+##  Additional Environment Requirements
+Since the application of Laplace approximation depends on the [Laplace library](https://github.com/aleximmer/Laplace). It requires extra dependencies beyond the default `environment.yml`. 
+
+If you want to run the Laplace approximation baseline, please install the following libraries manually:
+```
+pip install laplace-torch
+pip install git+https://git@github.com/wiseodd/asdl@asdfghjkl
+```
+
+
 ## Pretrained model weights
 We provide several pretrained model weights to facilitate **reproducibility** of our experiments.
 
