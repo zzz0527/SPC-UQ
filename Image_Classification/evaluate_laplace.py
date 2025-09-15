@@ -273,6 +273,7 @@ if __name__ == "__main__":
         adv_y_prob = torch.cat(adv_y_prob, dim=0)
         adv_y_true = torch.cat(adv_y_true, dim=0).numpy()
         _, adv_predictions = torch.max(adv_y_prob, 1)
+        adv_predictions=adv_predictions.detach().cpu().numpy()
         adv_accuracy = (adv_y_true == adv_predictions).mean()
         adv_confidences = adv_y_prob.max(dim=1)[0].numpy()
         bin_labels = np.concatenate([
