@@ -16,16 +16,13 @@ from baselines.de_model import DEModel
 from baselines.dirichlet import DirichletModel
 from baselines.mc_model import MCDModel
 from baselines.mar_regressor import AudioMAR,ImageMAR,TextMAR,MultimodalMAR
-from baselines.consistency_model import SCModel
+from baselines.spc_model import SPCModel
 from baselines.pure_model import PureModel
 from data_generation.text_processing import extract_deep_text_features
 from dataset import LUMADataset
 
 pl.seed_everything(42)
-# torch.multiprocessing.set_start_method('spawn', force=True)
-# torch.use_deterministic_algorithms(True)
-# torch.backends.cudnn.deterministic = True
-# torch.backends.cudnn.benchmark = False
+
 
 try:
     import torchaudio
@@ -143,8 +140,8 @@ mc_models = [MCDModel(c, classes, mc_samples, dropout_p) for c in [ImageClassifi
 de_models = [DEModel(c, classes, n_ensemble, 0) for c in [ImageClassifier, AudioClassifier, TextClassifier,
                                                                   MultimodalClassifier]]
 dir_models = [DirichletModel(MultimodalClassifier, classes, dropout=0)]
-sc_models = [SCModel(c, classes, 0) for c in [ImageMAR, AudioMAR, TextMAR, MultimodalMAR]]
-models = mc_models + de_models + dir_models + sc_models
+spc_models = [SPCModel(c, classes, 0) for c in [ImageMAR, AudioMAR, TextMAR, MultimodalMAR]]
+models = mc_models + de_models + dir_models + spc_models
 
 
 # model = SCModel(MultimodalMAR, classes, dropout_p)
@@ -260,7 +257,6 @@ for classifier in models:
     uncertainty_values[f'{model_name}_epistemic'] = epistemic_uncertainties
     uncertainty_values[f'{model_name}_aleatoric'] = aleatoric_uncertainties
     acc_dict[model_name + '_ood_auc'] = auc_score
-    print('AAAAAAAAAAAAAAAAAAAAAA', auc_score)
 for key, value in acc_dict.items():
     print(f'{key}: {value}')
 
