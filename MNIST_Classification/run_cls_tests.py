@@ -9,7 +9,7 @@ from data.data_params import data_params
 parser = argparse.ArgumentParser()
 parser.add_argument("--num-trials", default=5, type=int,
                     help="Number of trials to repeat training for statistically significant results.")
-parser.add_argument("--num-epochs", default=40, type=int,
+parser.add_argument("--num-epochs", default=10, type=int,
                     help="Number of training epochs.")
 args = parser.parse_args()
 
@@ -47,7 +47,8 @@ for d_idx, dataset in enumerate(datasets):
                                     num_epochs=num_epochs,
                                     batch_size=batch_size,
                                     verbose=True,
-                                    freq=5)
+                                    freq=5,
+                                    joint_training=0)
 
             model, acc, acc_c, acc_u, auroc, train_time, test_time = results
 
@@ -70,8 +71,8 @@ def print_metric_summary(name, values):
 
 
 print_metric_summary("Accuracy", ACC)
-print_metric_summary("Confident Accuracy", ACC_C)
-print_metric_summary("Uncertain Accuracy", ACC_U)
-print_metric_summary("AUROC", AUROC)
+print_metric_summary("Confident Samples' Accuracy", ACC_C)
+print_metric_summary("Uncertain Samples' Accuracy", ACC_U)
+print_metric_summary("OOD AUROC", AUROC)
 print_metric_summary("Train Time (ms)", TRAINSPEED)
 print_metric_summary("Test Time (ms)", TESTSPEED)
