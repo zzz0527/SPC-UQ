@@ -4,7 +4,7 @@ This repository contains the official code for **SPC-UQ** (Split-Point Consisten
 
 It accompanies the paper:
 
-**"Post-Hoc Split-Point Self-Consistency Verification for Efficient, Unified Quantification of Aleatoric and Epistemic Uncertainty in Deep Learning."**
+[**"Post-Hoc Split-Point Self-Consistency Verification for Efficient, Unified Quantification of Aleatoric and Epistemic Uncertainty in Deep Learning."**](https://arxiv.org/abs/2509.13262)
 
 ## Key Features
 
@@ -71,9 +71,10 @@ See the documentation in each subdirectory for details on dataset preparation, c
 If you use SPC-UQ in your research, please cite our paper:
 
 ```
-@article{zhao2025spc,
-  title   = {Post-Hoc Split-Point Self-Consistency Verification for Efficient, Unified Quantification of Aleatoric and Epistemic Uncertainty in Deep Learning},
-  author  = {Zhao, ZZ and Chen, Ke},
-  year    = {2025}
+@article{zhao2025post,
+  title={Post-Hoc Split-Point Self-Consistency Verification for Efficient, Unified Quantification of Aleatoric and Epistemic Uncertainty in Deep Learning},
+  author={Zhao, Zhizhong and Chen, Ke},
+  journal={arXiv preprint arXiv:2509.13262},
+  year={2025}
 }
 ```
